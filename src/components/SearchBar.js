@@ -8,7 +8,7 @@ import { Feather } from "@expo/vector-icons";
 const SearchBar = () => {
   return (
     <View style={styles.backgroundStyle}>
-      <Feather name="search" size={30} color="black" />
+      <Feather name="search" style={styles.iconStyle} />
       {/* no default styling is applied to TextInput  */}
       <TextInput
         // placeholder prop
@@ -20,6 +20,8 @@ const SearchBar = () => {
 };
 const styles = StyleSheet.create({
   backgroundStyle: {
+    // margin to move way from header
+    marginTop: 10,
     backgroundColor: "#F0EEEE", //
     height: 50,
     borderRadius: 5,
@@ -31,11 +33,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   inputStyle: {
-    borderColor: "black",
-    borderWidth: 1,
+    // adding boarder here so it is easier to see for styling
+    // borderColor: "black",
+    // borderWidth: 1,
     // text input is being smashed down in the horizontal direction
     // due to flex start so set flex 1
     flex: 1,
+    fontSize: 18,
+  },
+  iconStyle: {
+    // font Size controls icon size
+    fontSize: 35,
+    alignSelf: "center",
+    marginHorizontal: 15,
   },
 });
 export default SearchBar;
