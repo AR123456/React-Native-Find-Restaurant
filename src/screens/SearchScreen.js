@@ -11,9 +11,10 @@ const SearchScreen = () => {
         // passing the state and the way to change it to SearchBar
         term={term}
         onTermChange={(newTerm) => setTerm(newTerm)}
+        // onTermSubmit={() => console.log("search from searchbar")}
+        onTermSubmit={() => console.log("search from searchbar")}
       ></SearchBar>
       <Text>Search Screen</Text>
-      <Text> {term}</Text>
     </View>
   );
 };

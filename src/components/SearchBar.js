@@ -3,7 +3,7 @@ import { View, TextInput, StyleSheet } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
 // destructuer term and onTermChange from the props object
-const SearchBar = ({ term, onTermChange }) => {
+const SearchBar = ({ term, onTermChange, onTermSubmit }) => {
   return (
     <View style={styles.backgroundStyle}>
       <Feather name="search" style={styles.iconStyle} />
@@ -13,7 +13,17 @@ const SearchBar = ({ term, onTermChange }) => {
         placeholder="Search"
         style={styles.inputStyle}
         value={term}
-        onChangeText={(newTerm) => onTermChange(newTerm)}
+        // short hand way to call onChangeText
+        onChangeText={onTermChange}
+        // onChangeText={(newTerm) => onTermChange(newTerm)}
+        ///////////////////////////////////
+        // built in event for submitting search input
+        // pass in the function to be called
+        // so need another call back function from parent to take care of this
+        // onEndEditing={() => console.log("submitted")}
+        // onEndEditing={() => onTermSubmit()}
+        // short hand way to write
+        onEndEditing={onTermSubmit}
       />
     </View>
   );
