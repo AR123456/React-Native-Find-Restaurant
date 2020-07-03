@@ -8,13 +8,13 @@ const SearchScreen = () => {
   const [results, setResults] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const searchApi = async () => {
+  const searchApi = async (searchTerm) => {
     // wrap the req/res in a try catch to find errors
     try {
       const response = await yelp.get("/search", {
         params: {
           limit: 50,
-          term: term,
+          term: searchTerm,
           location: "aurora colorado", // or try san jose
         },
       });
@@ -25,13 +25,20 @@ const SearchScreen = () => {
       setErrorMessage("Something went wrong");
     }
   };
+  // dont call searchApi when component is frist rendred.
+  // This casues the serach, ping to API  to happen over and over
+  // every time setter is called everyting re renders - infinite loop
+  // bad code
+  // dont call function directly in the component
+  // searchApi("pasta");
 
   return (
     <View>
       <SearchBar
         term={term}
         onTermChange={setTerm}
-        onTermSubmit={searchApi}
+        onTermSubmit={() => searchApi(term)}
+        // onTermSubmit={searchApi}
       ></SearchBar>
       {/* only show the errorMessage if there is an error */}
       {errorMessage ? <Text> {errorMessage}</Text> : null}
