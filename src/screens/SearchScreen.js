@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import SearchBar from "../components/SearchBar";
 import yelp from "../api/yelp";
@@ -31,7 +31,11 @@ const SearchScreen = () => {
   // bad code
   // dont call function directly in the component
   // searchApi("pasta");
-
+  // to fix the use useEffect and in the array at end pass in an empty array
+  //(could be run multiple times if you do pass something into the array)
+  useEffect(() => {
+    searchApi("pasta");
+  }, []);
   return (
     <View>
       <SearchBar
