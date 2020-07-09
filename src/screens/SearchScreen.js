@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import SearchBar from "../components/SearchBar";
-
 import useResults from "../hooks/useResults";
 import ResultsList from "../components/ResultsList";
 
 const SearchScreen = () => {
   const [term, setTerm] = useState("");
   const [searchApi, results, errorMessage] = useResults();
-
+  // console.log(results);
+  const filterResultsByPrice = (price) => {
+    // price ==="$"||"$$"||"$$$"
+    return results.filter((result) => {
+      return result.price === price;
+    });
+  };
   return (
     <View>
       <SearchBar
@@ -16,16 +21,16 @@ const SearchScreen = () => {
         onTermChange={setTerm}
         onTermSubmit={() => searchApi(term)}
       ></SearchBar>
-      {/* only show the errorMessage if there is an error */}
       {errorMessage ? <Text> {errorMessage}</Text> : null}
+      {/* send list results to the different results list components as
+      props  doing grouping here so that what is sent is grouped by cost 
+      already, not doing logic for this inthe ResultList component */}
       <Text>We have found {results.length} results</Text>
-      {/* will need to communicate configuration data from 
-      searchScreen into the copies of ResultsList using prop system 
-      IE passing props
-      ResultsList needs to recive the prop and then show it in the list */}
-      <ResultsList title="Cost Effective" />
-      <ResultsList title="Bit Pricier" />
-      <ResultsList title="Big Spender" />
+      {/* pass in the array of data we want the component to show 
+      using the filterResultsByPrice helper function  */}
+      <ResultsList results={filterResultsByPrice("$")} title="Cost Effective" />
+      <ResultsList results={filterResultsByPrice("$$")} title="Bit Pricier" />
+      <ResultsList results={filterResultsByPrice("$$$")} title="Big Spender" />
     </View>
   );
 };
