@@ -3,7 +3,7 @@ import { View, Image, Text, StyleSheet } from "react-native";
 
 const ResultsDetail = ({ result }) => {
   return (
-    <View>
+    <View style={styles.container}>
       {/* note here using the full word source not src
     and double {{}} because it is an object 
     */}
@@ -24,13 +24,18 @@ const ResultsDetail = ({ result }) => {
   );
 };
 const styles = StyleSheet.create({
+  container: {
+    marginLeft: 15,
+  },
   image: {
     height: 120,
     width: 250,
     borderRadius: 4,
+    marginBottom: 5,
   },
   name: {
     fontWeight: "bold",
+    fontSize: 16,
   },
 });
 export default ResultsDetail;
