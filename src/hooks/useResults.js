@@ -21,7 +21,7 @@ const useResults = () => {
   };
 
   useEffect(() => {
-    searchApi("pasta");
+    searchApi("vegetarian");
   }, []);
 
   return [searchApi, results, errorMessage];

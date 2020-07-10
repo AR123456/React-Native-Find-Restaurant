@@ -22,12 +22,7 @@ const SearchScreen = () => {
         onTermSubmit={() => searchApi(term)}
       ></SearchBar>
       {errorMessage ? <Text> {errorMessage}</Text> : null}
-      {/* send list results to the different results list components as
-      props  doing grouping here so that what is sent is grouped by cost 
-      already, not doing logic for this inthe ResultList component */}
       <Text>We have found {results.length} results</Text>
-      {/* pass in the array of data we want the component to show 
-      using the filterResultsByPrice helper function  */}
       <ResultsList results={filterResultsByPrice("$")} title="Cost Effective" />
       <ResultsList results={filterResultsByPrice("$$")} title="Bit Pricier" />
       <ResultsList results={filterResultsByPrice("$$$")} title="Big Spender" />
