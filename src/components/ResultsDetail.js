@@ -1,20 +1,36 @@
 import React from "react";
 import { View, Image, Text, StyleSheet } from "react-native";
 
-// here passing in the result prop that we made up in
-//the ResultsList component
-// result here is the bussiness object
 const ResultsDetail = ({ result }) => {
   return (
     <View>
-      <Text>{result.name}</Text>
-      {/* <FlatList
-        renderItem={({ item }) => {
-          return <Text>{item.name}</Text>;
+      {/* note here using the full word source not src
+    and double {{}} because it is an object 
+    */}
+      <Image
+        style={styles.image}
+        source={{
+          // uri is syntax for react native
+          // the default for an Image tag in react native
+          // is colapsed.  so need to add a fixed height to see it.
+          uri: result.image_url,
         }}
-      ></FlatList> */}
+      />
+      <Text style={styles.name}>{result.name}</Text>
+      <Text>
+        Starts, {result.rating} Reviews {result.review_count}
+      </Text>
     </View>
   );
 };
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  image: {
+    height: 120,
+    width: 250,
+    borderRadius: 4,
+  },
+  name: {
+    fontWeight: "bold",
+  },
+});
 export default ResultsDetail;

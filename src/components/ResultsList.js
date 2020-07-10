@@ -9,25 +9,8 @@ const ResultsList = ({ title, results }) => {
         horizontal
         data={results}
         keyExtractor={(result) => result.id}
-        // move this to its own component helper type component
-        // ResutlsDetails
-        //that can be shown in resutls list
-        // renderItem={({ item }) => {
-        //   return <Text>{item.name}</Text>;
-        // }}
         renderItem={({ item }) => {
-          // need to pass in the current result that
-          // is being iterated over
-          // so create a prop
-          //item here is the current result that we are iterating
-          // over
-          return (
-            <ResultsDetail
-              // this result is a prop that we made up
-              // it is the bussiness object from the json
-              result={item}
-            />
-          );
+          return <ResultsDetail result={item} />;
         }}
       ></FlatList>
     </View>
