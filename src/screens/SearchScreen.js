@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import SearchBar from "../components/SearchBar";
 import useResults from "../hooks/useResults";
 import ResultsList from "../components/ResultsList";
@@ -14,6 +14,9 @@ const SearchScreen = () => {
       return result.price === price;
     });
   };
+  // React Native ScrollView controls the vertical scroll-
+  // if it detects that it has too much content to fit on the
+  // screen all at one time it will enable scrolling. So here wrap ResutlList with ScrollView
 
   return (
     <View>
@@ -24,9 +27,17 @@ const SearchScreen = () => {
       ></SearchBar>
       {errorMessage ? <Text> {errorMessage}</Text> : null}
       <Text>We have found {results.length} results</Text>
-      <ResultsList results={filterResultsByPrice("$")} title="Cost Effective" />
-      <ResultsList results={filterResultsByPrice("$$")} title="Bit Pricier" />
-      <ResultsList results={filterResultsByPrice("$$$")} title="Big Spender" />
+      <ScrollView>
+        <ResultsList
+          results={filterResultsByPrice("$")}
+          title="Cost Effective"
+        />
+        <ResultsList results={filterResultsByPrice("$$")} title="Bit Pricier" />
+        <ResultsList
+          results={filterResultsByPrice("$$$")}
+          title="Big Spender"
+        />
+      </ScrollView>
     </View>
   );
 };

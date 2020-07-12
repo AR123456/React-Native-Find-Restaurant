@@ -5,8 +5,10 @@ const ResultsList = ({ title, results }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
+      {/* The FlatList controles the scroll bar */}
       <FlatList
         horizontal
+        showsHorizontalScrollIndicator={false}
         data={results}
         keyExtractor={(result) => result.id}
         renderItem={({ item }) => {
