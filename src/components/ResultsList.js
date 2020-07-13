@@ -1,7 +1,14 @@
 import React from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import ResultsDetail from "../components/ResultsDetail";
-const ResultsList = ({ title, results }) => {
+// now getting navigation prop from the SearchShearch screen props object
+const ResultsList = ({ title, results, navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
@@ -12,7 +19,15 @@ const ResultsList = ({ title, results }) => {
         data={results}
         keyExtractor={(result) => result.id}
         renderItem={({ item }) => {
-          return <ResultsDetail result={item} />;
+          // use react native touchable opasity to fade out with tap
+          return (
+            // the on press callback goes in TouchableOpacity
+            <TouchableOpacity
+              onPress={() => navigation.navigate("ResutlsShow")}
+            >
+              <ResultsDetail result={item} />
+            </TouchableOpacity>
+          );
         }}
       ></FlatList>
     </View>

@@ -4,7 +4,12 @@ import SearchBar from "../components/SearchBar";
 import useResults from "../hooks/useResults";
 import ResultsList from "../components/ResultsList";
 
-const SearchScreen = () => {
+const SearchScreen = ({ navigation }) => {
+  //props coming from react navigation
+  // need to pass the navigate function in this prop to child component,
+  // sub component that is being displayed by SearchScreen - that sub component needs the
+  // onTap
+  // console.log(props);
   const [term, setTerm] = useState("");
   const [searchApi, results, errorMessage] = useResults();
   // console.log(results);
@@ -14,14 +19,8 @@ const SearchScreen = () => {
       return result.price === price;
     });
   };
-  // alternative method of fixing vertical scrolling is using empty elements
-  //https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15707278#overview
-  // sometimes the View element can be destructive to view, meaning scrolling off the screen ect
-  // or shrink down to fit context with unexpected contents
-  // instead of using View to return elements, could return not an element with an empty tag
-  // its like a place holder element and no longer need to use flex to keep stuff on screen
+
   return (
-    // <View style={{ flex: 1 }}>
     <>
       <SearchBar
         term={term}
@@ -34,11 +33,18 @@ const SearchScreen = () => {
         <ResultsList
           results={filterResultsByPrice("$")}
           title="Cost Effective"
+          // passing the navigation prop to ScrollView
+          navigation={navigation}
         />
-        <ResultsList results={filterResultsByPrice("$$")} title="Bit Pricier" />
+        <ResultsList
+          results={filterResultsByPrice("$$")}
+          title="Bit Pricier"
+          navigation={navigation}
+        />
         <ResultsList
           results={filterResultsByPrice("$$$")}
           title="Big Spender"
+          navigation={navigation}
         />
       </ScrollView>
     </>
