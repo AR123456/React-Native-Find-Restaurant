@@ -6,7 +6,9 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
+import { withNavigation } from "react-navigation";
 import ResultsDetail from "../components/ResultsDetail";
+import { withNavigation } from "react-navigation";
 // now getting navigation prop from the SearchShearch screen props object
 const ResultsList = ({ title, results, navigation }) => {
   return (
@@ -44,4 +46,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 });
-export default ResultsList;
+// export default ResultsList;
+//wrap the export in withNavigation
+export default withNavigation(ResultsList);

@@ -4,12 +4,7 @@ import SearchBar from "../components/SearchBar";
 import useResults from "../hooks/useResults";
 import ResultsList from "../components/ResultsList";
 
-const SearchScreen = ({ navigation }) => {
-  //props coming from react navigation
-  // need to pass the navigate function in this prop to child component,
-  // sub component that is being displayed by SearchScreen - that sub component needs the
-  // onTap
-  // console.log(props);
+const SearchScreen = ({}) => {
   const [term, setTerm] = useState("");
   const [searchApi, results, errorMessage] = useResults();
   // console.log(results);
@@ -33,18 +28,11 @@ const SearchScreen = ({ navigation }) => {
         <ResultsList
           results={filterResultsByPrice("$")}
           title="Cost Effective"
-          // passing the navigation prop to ScrollView
-          navigation={navigation}
         />
-        <ResultsList
-          results={filterResultsByPrice("$$")}
-          title="Bit Pricier"
-          navigation={navigation}
-        />
+        <ResultsList results={filterResultsByPrice("$$")} title="Bit Pricier" />
         <ResultsList
           results={filterResultsByPrice("$$$")}
           title="Big Spender"
-          navigation={navigation}
         />
       </ScrollView>
     </>
