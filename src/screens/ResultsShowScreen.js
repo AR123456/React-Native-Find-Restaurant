@@ -1,7 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-
-const ResultsShowScreen = () => {
+// props come directly from a parent component get navigation which has
+// a special function getParam
+const ResultsShowScreen = ({ navigation }) => {
+  const id = navigation.getParam("id");
+  console.log(id);
   return (
     <View>
       <Text>Resutls Show </Text>

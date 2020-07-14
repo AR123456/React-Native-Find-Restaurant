@@ -8,8 +8,7 @@ import {
 } from "react-native";
 import { withNavigation } from "react-navigation";
 import ResultsDetail from "../components/ResultsDetail";
-import { withNavigation } from "react-navigation";
-// now getting navigation prop from the SearchShearch screen props object
+
 const ResultsList = ({ title, results, navigation }) => {
   return (
     <View style={styles.container}>
@@ -21,11 +20,12 @@ const ResultsList = ({ title, results, navigation }) => {
         data={results}
         keyExtractor={(result) => result.id}
         renderItem={({ item }) => {
-          // use react native touchable opasity to fade out with tap
           return (
-            // the on press callback goes in TouchableOpacity
             <TouchableOpacity
-              onPress={() => navigation.navigate("ResutlsShow")}
+              // pass in a second argument that passes info to the other screen
+              onPress={() =>
+                navigation.navigate("ResutlsShow", { id: item.id })
+              }
             >
               <ResultsDetail result={item} />
             </TouchableOpacity>
@@ -46,6 +46,5 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 });
-// export default ResultsList;
-//wrap the export in withNavigation
+
 export default withNavigation(ResultsList);
