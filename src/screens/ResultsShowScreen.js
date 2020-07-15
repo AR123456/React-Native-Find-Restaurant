@@ -23,7 +23,7 @@ const ResultsShowScreen = ({ navigation }) => {
     return null;
   }
 
-  console.log(id);
+  // console.log(id);
   return (
     <View>
       <Text>{result.name}</Text>
